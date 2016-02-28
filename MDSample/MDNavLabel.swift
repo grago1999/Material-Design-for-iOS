@@ -12,7 +12,6 @@ class MDNavLabel: MDLabel {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        
         self.textAlignment = NSTextAlignment.Left
     }
 

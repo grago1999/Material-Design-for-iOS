@@ -40,7 +40,7 @@
 		99C34F8D1C26196000824669 /* MDNavLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C34F8C1C26196000824669 /* MDNavLabel.swift */; };
 		99C34F8F1C261E8E00824669 /* MDSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C34F8E1C261E8E00824669 /* MDSwitch.swift */; };
 		99C34F911C26200B00824669 /* MDAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C34F901C26200B00824669 /* MDAlertView.swift */; };
-		99C7E4B61C25E7D000B9CE03 /* PlaceholderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C7E4B51C25E7D000B9CE03 /* PlaceholderLabel.swift */; };
+		99C7E4B61C25E7D000B9CE03 /* MDPlaceholderLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C7E4B51C25E7D000B9CE03 /* MDPlaceholderLabel.swift */; };
 		99C7E4B91C25EE1A00B9CE03 /* nav.png in Resources */ = {isa = PBXBuildFile; fileRef = 99C7E4B81C25EE1A00B9CE03 /* nav.png */; };
 		99C7E4BB1C25EF6A00B9CE03 /* MDRoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C7E4BA1C25EF6A00B9CE03 /* MDRoundButton.swift */; };
 		99C7E4BD1C25F38000B9CE03 /* MDNavButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C7E4BC1C25F38000B9CE03 /* MDNavButton.swift */; };
@@ -94,7 +94,7 @@
 		99C34F8C1C26196000824669 /* MDNavLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDNavLabel.swift; sourceTree = "<group>"; };
 		99C34F8E1C261E8E00824669 /* MDSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDSwitch.swift; sourceTree = "<group>"; };
 		99C34F901C26200B00824669 /* MDAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDAlertView.swift; sourceTree = "<group>"; };
-		99C7E4B51C25E7D000B9CE03 /* PlaceholderLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceholderLabel.swift; sourceTree = "<group>"; };
+		99C7E4B51C25E7D000B9CE03 /* MDPlaceholderLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDPlaceholderLabel.swift; sourceTree = "<group>"; };
 		99C7E4B81C25EE1A00B9CE03 /* nav.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nav.png; sourceTree = "<group>"; };
 		99C7E4BA1C25EF6A00B9CE03 /* MDRoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDRoundButton.swift; sourceTree = "<group>"; };
 		99C7E4BC1C25F38000B9CE03 /* MDNavButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MDNavButton.swift; sourceTree = "<group>"; };
@@ -167,7 +167,7 @@
 				994A32C81C1BCD3000631D92 /* MDView.swift */,
 				994A32DF1C1BD5C400631D92 /* MDLabel.swift */,
 				99C34F8C1C26196000824669 /* MDNavLabel.swift */,
-				99C7E4B51C25E7D000B9CE03 /* PlaceholderLabel.swift */,
+				99C7E4B51C25E7D000B9CE03 /* MDPlaceholderLabel.swift */,
 				997782711C1BDD6400E226AC /* MDTextField.swift */,
 				994A32E11C1BD8D700631D92 /* MDNavBar.swift */,
 				995E17CB1C25D09300FC2BAB /* MDScrollView.swift */,
@@ -346,7 +346,7 @@
 				994A32A81C1BCCF300631D92 /* AppDelegate.swift in Sources */,
 				99C7E4BB1C25EF6A00B9CE03 /* MDRoundButton.swift in Sources */,
 				994A32E21C1BD8D700631D92 /* MDNavBar.swift in Sources */,
-				99C7E4B61C25E7D000B9CE03 /* PlaceholderLabel.swift in Sources */,
+				99C7E4B61C25E7D000B9CE03 /* MDPlaceholderLabel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

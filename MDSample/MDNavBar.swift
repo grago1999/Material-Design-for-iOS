@@ -27,7 +27,7 @@ class MDNavBar: MDView {
     
     func setupWithBackgroundColor(color:UIColor) {
         self.backgroundColor = color
-        statusBarView.backgroundColor = color.colorWithAlphaComponent(0.80)
+        statusBarView.backgroundColor = color.colorWithAlphaComponent(0.8)
     }
 
     required init?(coder aDecoder: NSCoder) {

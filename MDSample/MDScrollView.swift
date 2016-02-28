@@ -10,9 +10,6 @@ import UIKit
 
 class MDScrollView: UIScrollView {
     
-    var screenWidth = UIScreen.mainScreen().bounds.size.width
-    var screenHeight = UIScreen.mainScreen().bounds.size.height
-    
     override init(frame: CGRect) {
         super.init(frame:frame)
         

@@ -28,8 +28,7 @@ class ViewController: UIViewController {
         let navBtnSize = navBar.frame.size.height/2
         let navBtn = MDNavButton(frame:CGRectMake(0, 0, navBtnSize, navBtnSize))
         navBtn.center = CGPointMake(navBar.frame.size.height/2, navBar.frame.size.height/2)
-        navBtn.setup(UIColor.clearColor(), withText:"", withTextColor:UIColor.clearColor())
-        navBtn.setImage(UIImage(named:"nav.png"), forState:UIControlState.Normal)
+        navBtn.setup(mainColor, withImg:UIImage(named:"nav.png")!)
         navBar.addSubview(navBtn)
         
         let mdNavLabel = MDNavLabel(frame:CGRectMake(navBtn.frame.origin.x+(1.5*navBtnSize), 0, screenWidth/2, screenHeight/10))
@@ -47,7 +46,7 @@ class ViewController: UIViewController {
         
         let mdTextField = MDTextField(frame:CGRectMake(0, mdLabel.frame.origin.y+mdLabel.frame.size.height+distInView, screenWidth/2, screenHeight/12))
         mdTextField.center = CGPointMake(screenWidth/2, mdTextField.center.y)
-        mdTextField.setup(UIColor.whiteColor(), withPlaceholder:"Enter Something!", withTextColor:mainColor)
+        mdTextField.setup(UIColor.whiteColor(), withPlaceholder:" Enter Something!", withTextColor:UIColor.blackColor())
         mdView.addSubview(mdTextField)
         
         let mdRasiedBtn = MDButton(frame:CGRectMake(0, mdTextField.frame.origin.y+mdTextField.frame.size.height+distInView, screenWidth/2, screenHeight/14))

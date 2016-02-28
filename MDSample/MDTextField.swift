@@ -8,19 +8,18 @@
 
 import UIKit
 
-class MDTextField: UIView, UITextFieldDelegate {
+class MDTextField: MDView, UITextFieldDelegate {
     
     var textField = UITextField()
-    var placeholderLabel = PlaceholderLabel(frame:CGRectZero)
+    var placeholderLabel = MDPlaceholderLabel(frame:CGRectZero)
     
     var tapView = UIView()
     var isShowingTap = false
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        
-        self.layer.cornerRadius = 10.0
-        self.layer.masksToBounds = true
+        self.layer.shadowOpacity = 0.0
+        self.layer.cornerRadius = 0.0
         
         textField = UITextField(frame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
         textField.textColor = UIColor.blackColor()
@@ -37,8 +36,13 @@ class MDTextField: UIView, UITextFieldDelegate {
     
     func setup(withBackgroundColor:UIColor, withPlaceholder:String, withTextColor:UIColor) {
         self.backgroundColor = withBackgroundColor
-        placeholderLabel = PlaceholderLabel(frame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-        placeholderLabel.setup(withPlaceholder, withTextColor:UIColor.grayColor().colorWithAlphaComponent(0.75))
+        textField.textColor = withTextColor
+        placeholderLabel = MDPlaceholderLabel(frame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
+        var placeholderTextColor = withTextColor
+        if withTextColor == UIColor.blackColor() {
+            placeholderTextColor = UIColor.grayColor().colorWithAlphaComponent(0.75)
+        }
+        placeholderLabel.setup(withPlaceholder, withTextColor:placeholderTextColor)
         self.addSubview(placeholderLabel)
     }
     
@@ -108,7 +112,12 @@ class MDTextField: UIView, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         textField.enabled = false
+        isShowingTap = false
         return true
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        isShowingTap = false
     }
     
     required init?(coder aDecoder: NSCoder) {

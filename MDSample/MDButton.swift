@@ -10,24 +10,16 @@ import UIKit
 
 class MDButton: UIButton {
     
-    var screenWidth = UIScreen.mainScreen().bounds.size.width
-    var screenHeight = UIScreen.mainScreen().bounds.size.height
-    
     var tapView = UIView()
     var isShowingTap = false
     
     override init(frame: CGRect) {
         super.init(frame:frame)
         
-        self.layer.cornerRadius = 5.0
-        self.layer.shadowColor = UIColor.blackColor().CGColor
-        self.layer.shadowRadius = self.layer.cornerRadius
-        self.layer.shadowOpacity = 0.4
-        self.layer.shadowOffset = CGSizeMake(2.0, 2.0)
-        self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.layer.cornerRadius).CGPath
-        self.titleLabel?.textAlignment = NSTextAlignment.Center
-        self.layer.shouldRasterize = true
-        self.layer.rasterizationScale = UIScreen.mainScreen().scale
+        if self.frame.size.width != self.frame.size.height {
+            self.layer.cornerRadius = 5.0
+        }
+        addShadow()
         self.userInteractionEnabled = true
         
         tapView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
@@ -43,9 +35,27 @@ class MDButton: UIButton {
         self.titleLabel?.font = UIFont(name:"Roboto-Medium", size:20.0)
     }
     
+    func setup(withBackgroundColor:UIColor, withImg:UIImage) {
+        self.backgroundColor = withBackgroundColor
+        self.setImage(withImg, forState:UIControlState.Normal)
+    }
+    
+    func addShadow() {
+        self.layer.shadowColor = UIColor.blackColor().CGColor
+        self.layer.shadowRadius = self.layer.cornerRadius
+        self.layer.shadowOpacity = 0.4
+        self.layer.shadowOffset = CGSizeMake(2.0, 2.0)
+        self.layer.shadowPath = UIBezierPath(roundedRect:self.bounds, cornerRadius:self.layer.cornerRadius).CGPath
+        self.titleLabel?.textAlignment = NSTextAlignment.Center
+        self.layer.shouldRasterize = true
+        self.layer.rasterizationScale = UIScreen.mainScreen().scale
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         if !isShowingTap {
             isShowingTap = true
+            self.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+            
             let touch = touches.first
             var location = touch?.locationInView(self)
             if let _ = self as? MDNavButton {
