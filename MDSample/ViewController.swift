@@ -21,18 +21,16 @@ class ViewController: UIViewController {
         let mdScrollView = MDScrollView(frame:CGRectMake(0, 0, screenWidth, screenHeight))
         self.view.addSubview(mdScrollView)
         
-        let navBar = MDNavBar(frame:CGRectZero)
-        navBar.setupWithBackgroundColor(mainColor)
+        let navBar = MDNavBar(frame:CGRectZero, backgroundColor:mainColor)
         self.view.addSubview(navBar)
         
         let navBtnSize = navBar.frame.size.height/2
-        let navBtn = MDNavButton(frame:CGRectMake(0, 0, navBtnSize, navBtnSize))
+        let navBtn = MDButton(frame:CGRectMake(0, 0, navBtnSize, navBtnSize), backgroundColor:mainColor, img:UIImage(named:"nav.png")!, isRound:true, isForNav:true)
         navBtn.center = CGPointMake(navBar.frame.size.height/2, navBar.frame.size.height/2)
-        navBtn.setup(mainColor, withImg:UIImage(named:"nav.png")!)
         navBar.addSubview(navBtn)
         
-        let mdNavLabel = MDNavLabel(frame:CGRectMake(navBtn.frame.origin.x+(1.5*navBtnSize), 0, screenWidth/2, screenHeight/10))
-        mdNavLabel.setup("Home", withTextColor:UIColor.whiteColor())
+        let mdNavLabel = MDLabel(frame:CGRectMake(0, 0, screenWidth/2, screenHeight/10), text:"Home", textColor:UIColor.whiteColor(), textAlignment:NSTextAlignment.Center, fontSize:26.0)
+        mdNavLabel.center = CGPoint(x:screenWidth/2, y:navBar.frame.size.height/2)
         navBar.addSubview(mdNavLabel)
         
         let mdView = MDView(frame:CGRectMake(0, (screenHeight/20)+navBar.frame.size.height, screenWidth, screenHeight/2.5))
@@ -40,29 +38,24 @@ class ViewController: UIViewController {
         
         let distInView = mdView.frame.size.height/8
         
-        let mdLabel = MDLabel(frame:CGRectMake(0, distInView/2, screenWidth, screenHeight/16))
-        mdLabel.setup("Form", withTextColor:UIColor.blackColor())
+        let mdLabel = MDLabel(frame:CGRectMake(0, distInView/2, screenWidth, screenHeight/16), text:"Form", textColor:UIColor.blackColor(), textAlignment:NSTextAlignment.Center, fontSize:20.0)
         mdView.addSubview(mdLabel)
         
-        let mdTextField = MDTextField(frame:CGRectMake(0, mdLabel.frame.origin.y+mdLabel.frame.size.height+distInView, screenWidth/2, screenHeight/12))
+        let mdTextField = MDTextField(frame:CGRectMake(0, mdLabel.frame.origin.y+mdLabel.frame.size.height+distInView, screenWidth/2, screenHeight/12), backgroundColor:UIColor.whiteColor(), placeholder:" Enter Something!", textColor:UIColor.blackColor())
         mdTextField.center = CGPointMake(screenWidth/2, mdTextField.center.y)
-        mdTextField.setup(UIColor.whiteColor(), withPlaceholder:" Enter Something!", withTextColor:UIColor.blackColor())
         mdView.addSubview(mdTextField)
         
-        let mdRasiedBtn = MDButton(frame:CGRectMake(0, mdTextField.frame.origin.y+mdTextField.frame.size.height+distInView, screenWidth/2, screenHeight/14))
+        let mdRasiedBtn = MDButton(frame:CGRectMake(0, mdTextField.frame.origin.y+mdTextField.frame.size.height+distInView, screenWidth/2, screenHeight/14), backgroundColor:mainColor, text:"Tap me!", textColor:UIColor.whiteColor(), isRound:false, isForNav:false)
         mdRasiedBtn.center = CGPointMake(screenWidth/2, mdRasiedBtn.center.y)
-        mdRasiedBtn.setup(mainColor, withText:"Tap me!", withTextColor:UIColor.whiteColor())
         mdView.addSubview(mdRasiedBtn)
         
-        let mdSwitch = MDSwitch(frame:CGRectMake(0, mdView.frame.origin.y+mdView.frame.size.height+(screenHeight/20), 0, 0))
+        let mdSwitch = MDSwitch(frame:CGRectMake(0, mdView.frame.origin.y+mdView.frame.size.height+(screenHeight/20), 0, 0), color:mainColor, shouldBeOn:false)
         mdSwitch.center = CGPointMake(screenWidth/2, mdSwitch.center.y)
-        mdSwitch.setup(mainColor, shouldBeOn:true)
         mdScrollView.addSubview(mdSwitch)
         
         let distFromEdge = screenWidth/16
         let createBtnSize = screenWidth/7
-        let createBtn = MDRoundButton(frame:CGRectMake(screenWidth-createBtnSize-distFromEdge, screenHeight-createBtnSize-distFromEdge, createBtnSize, createBtnSize))
-        createBtn.setup(mainColor, withText:"+", withTextColor:UIColor.whiteColor())
+        let createBtn = MDButton(frame:CGRectMake(screenWidth-createBtnSize-distFromEdge, screenHeight-createBtnSize-distFromEdge, createBtnSize, createBtnSize), backgroundColor:mainColor, text:"+", textColor:UIColor.whiteColor(), isRound:true, isForNav:false)
         self.view.addSubview(createBtn)
     }
     

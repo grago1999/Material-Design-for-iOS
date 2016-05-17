@@ -10,21 +10,24 @@ import UIKit
 
 class MDLabel: UILabel {
     
-    override init(frame: CGRect) {
+    init(frame:CGRect, text:String, textColor:UIColor, textAlignment:NSTextAlignment, fontSize:CGFloat) {
         super.init(frame:frame)
         
         self.backgroundColor = UIColor.clearColor()
-        self.textAlignment = NSTextAlignment.Center
+        self.textAlignment = textAlignment
+        self.text = text
+        self.textColor = textColor
+        self.font = UIFont(name:"Roboto-Bold", size:fontSize)
     }
     
-    func setup(withText:String, withTextColor:UIColor) {
-        self.text = withText
-        self.textColor = withTextColor
-        self.font = UIFont(name:"Roboto-Bold", size:20.0)
+    func setupAsPlaceholder() {
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.clearColor().CGColor
+        self.layer.shadowOpacity = 0.0
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder:aDecoder)
     }
     
 }

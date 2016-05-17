@@ -13,13 +13,13 @@ class MDSwitch: UIButton {
     var screenWidth = UIScreen.mainScreen().bounds.size.width
     var screenHeight = UIScreen.mainScreen().bounds.size.height
     
-    var switchView = MDView(frame:CGRectZero)
-    var barView = UIView()
-    var onColor = UIColor()
-    var isOn = false
-    var isAnimating = false
+    private var switchView = MDView(frame:CGRectZero)
+    private var barView = UIView()
+    private var onColor = UIColor()
+    private var isOn = false
+    private var isAnimating = false
     
-    override init(frame: CGRect) {
+    init(frame:CGRect, color:UIColor, shouldBeOn:Bool) {
         super.init(frame:frame)
         
         onColor = UIColor.clearColor()
@@ -41,13 +41,11 @@ class MDSwitch: UIButton {
         let btn = UIButton(frame:CGRectMake(0, 0, width, height))
         btn.center = CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
         btn.backgroundColor = UIColor.clearColor()
-        btn.addTarget(self, action:"switchState", forControlEvents:UIControlEvents.TouchUpInside)
+        btn.addTarget(self, action:#selector(MDSwitch.switchState), forControlEvents:UIControlEvents.TouchUpInside)
         btn.layer.zPosition = 2
         self.addSubview(btn)
-    }
-    
-    func setup(withColor:UIColor, shouldBeOn:Bool) {
-        onColor = withColor
+        
+        onColor = color
         isOn = shouldBeOn
         
         switchView = MDView(frame:CGRectMake(0, 0, barView.frame.size.height*1.5, barView.frame.size.height*1.5))
@@ -59,7 +57,7 @@ class MDSwitch: UIButton {
             switchView.backgroundColor = onColor
             barView.backgroundColor = onColor.colorWithAlphaComponent(0.8)
         } else {
-            switchView.center = CGPointMake(barView.frame.size.width, self.frame.size.height/2)
+            switchView.center = CGPointMake(barView.frame.origin.x+barView.frame.size.width, self.frame.size.height/2)
             switchView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.85)
             barView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.7)
         }
@@ -87,7 +85,7 @@ class MDSwitch: UIButton {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder:aDecoder)
     }
 
 }

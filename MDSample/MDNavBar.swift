@@ -15,23 +15,21 @@ class MDNavBar: MDView {
     
     var statusBarView = UIView()
     
-    override init(frame: CGRect) {
+    init(frame:CGRect, backgroundColor:UIColor) {
         super.init(frame:frame)
+        
+        self.backgroundColor = backgroundColor
         
         let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.size.height
         self.frame = CGRectMake(0, statusBarHeight, screenWidth, (screenHeight/10))
         
         statusBarView = UIView(frame:CGRectMake(0, -statusBarHeight, screenWidth, statusBarHeight))
+        statusBarView.backgroundColor = backgroundColor.colorWithAlphaComponent(0.8)
         self.addSubview(statusBarView)
-    }
-    
-    func setupWithBackgroundColor(color:UIColor) {
-        self.backgroundColor = color
-        statusBarView.backgroundColor = color.colorWithAlphaComponent(0.8)
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder:aDecoder)
     }
     
 }

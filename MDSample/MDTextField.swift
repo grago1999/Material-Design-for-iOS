@@ -11,12 +11,12 @@ import UIKit
 class MDTextField: MDView, UITextFieldDelegate {
     
     var textField = UITextField()
-    var placeholderLabel = MDPlaceholderLabel(frame:CGRectZero)
+    private var placeholderLabel:MDLabel?
     
-    var tapView = UIView()
-    var isShowingTap = false
+    private var tapView = UIView()
+    private var isShowingTap = false
     
-    override init(frame: CGRect) {
+    init(frame:CGRect, backgroundColor:UIColor, placeholder:String, textColor:UIColor) {
         super.init(frame:frame)
         self.layer.shadowOpacity = 0.0
         self.layer.cornerRadius = 0.0
@@ -32,18 +32,16 @@ class MDTextField: MDView, UITextFieldDelegate {
         tapView.layer.masksToBounds = true
         tapView.userInteractionEnabled = false
         self.addSubview(tapView)
-    }
-    
-    func setup(withBackgroundColor:UIColor, withPlaceholder:String, withTextColor:UIColor) {
-        self.backgroundColor = withBackgroundColor
-        textField.textColor = withTextColor
-        placeholderLabel = MDPlaceholderLabel(frame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height))
-        var placeholderTextColor = withTextColor
-        if withTextColor == UIColor.blackColor() {
+        
+        self.backgroundColor = backgroundColor
+        textField.textColor = textColor
+        var placeholderTextColor = textColor
+        if textColor == UIColor.blackColor() {
             placeholderTextColor = UIColor.grayColor().colorWithAlphaComponent(0.75)
         }
-        placeholderLabel.setup(withPlaceholder, withTextColor:placeholderTextColor)
-        self.addSubview(placeholderLabel)
+        placeholderLabel = MDLabel(frame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height), text:placeholder, textColor:placeholderTextColor, textAlignment:NSTextAlignment.Left, fontSize:20.0)
+        placeholderLabel?.setupAsPlaceholder()
+        self.addSubview(placeholderLabel!)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -96,13 +94,13 @@ class MDTextField: MDView, UITextFieldDelegate {
         
         if newStr.characters.count == 1 && string.characters.count == 1 {
             UIView.animateWithDuration(0.5, animations: {
-                self.placeholderLabel.transform = CGAffineTransformMakeScale(0.6, 0.6)
-                self.placeholderLabel.frame = CGRectMake(0, -self.placeholderLabel.frame.size.height/4, self.placeholderLabel.frame.size.width, self.placeholderLabel.frame.size.height)
+                self.placeholderLabel!.transform = CGAffineTransformMakeScale(0.6, 0.6)
+                self.placeholderLabel!.frame = CGRectMake(0, -self.placeholderLabel!.frame.size.height/4, self.placeholderLabel!.frame.size.width, self.placeholderLabel!.frame.size.height)
             })
         } else if newStr.characters.count == 0 {
             UIView.animateWithDuration(0.5, animations: {
-                self.placeholderLabel.transform = CGAffineTransformMakeScale(1.0, 1.0)
-                self.placeholderLabel.frame = CGRectMake(0, 0, self.placeholderLabel.frame.size.width, self.placeholderLabel.frame.size.height)
+                self.placeholderLabel!.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                self.placeholderLabel!.frame = CGRectMake(0, 0, self.placeholderLabel!.frame.size.width, self.placeholderLabel!.frame.size.height)
             })
         }
         
@@ -121,7 +119,7 @@ class MDTextField: MDView, UITextFieldDelegate {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder:aDecoder)
     }
     
 }

@@ -10,16 +10,38 @@ import UIKit
 
 class MDButton: UIButton {
     
-    var tapView = UIView()
-    var isShowingTap = false
+    private var tapView = UIView()
+    private var isShowingTap = false
+    private var isForNav:Bool
+    private var isRound:Bool
     
-    override init(frame: CGRect) {
+    init(frame:CGRect, backgroundColor:UIColor, text:String, textColor:UIColor, isRound:Bool, isForNav:Bool) {
+        self.isRound = isRound
+        self.isForNav = isForNav
         super.init(frame:frame)
         
-        if self.frame.size.width != self.frame.size.height {
-            self.layer.cornerRadius = 5.0
-        }
-        addShadow()
+        self.backgroundColor = backgroundColor
+        self.setTitle(text, forState:UIControlState.Normal)
+        self.setTitleColor(textColor, forState:UIControlState.Normal)
+        self.titleLabel?.font = UIFont(name:"Roboto-Medium", size:20.0)
+        
+        generalSetup()
+        setupForType()
+    }
+    
+    init(frame:CGRect, backgroundColor:UIColor, img:UIImage, isRound:Bool, isForNav:Bool) {
+        self.isRound = isRound
+        self.isForNav = isForNav
+        super.init(frame:frame)
+        
+        self.backgroundColor = backgroundColor
+        self.setImage(img, forState:UIControlState.Normal)
+        
+        generalSetup()
+        setupForType()
+    }
+    
+    private func generalSetup() {
         self.userInteractionEnabled = true
         
         tapView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)
@@ -28,16 +50,19 @@ class MDButton: UIButton {
         self.addSubview(tapView)
     }
     
-    func setup(withBackgroundColor:UIColor, withText:String, withTextColor:UIColor) {
-        self.backgroundColor = withBackgroundColor
-        self.setTitle(withText, forState:UIControlState.Normal)
-        self.setTitleColor(withTextColor, forState:UIControlState.Normal)
-        self.titleLabel?.font = UIFont(name:"Roboto-Medium", size:20.0)
-    }
-    
-    func setup(withBackgroundColor:UIColor, withImg:UIImage) {
-        self.backgroundColor = withBackgroundColor
-        self.setImage(withImg, forState:UIControlState.Normal)
+    private func setupForType() {
+        if !isForNav {
+            addShadow()
+        }
+        if isRound {
+            self.layer.cornerRadius = self.frame.size.width/2
+            self.layer.shadowRadius = self.layer.cornerRadius
+            tapView.layer.cornerRadius = self.layer.cornerRadius
+        } else {
+            if self.frame.size.width != self.frame.size.height {
+                self.layer.cornerRadius = 5.0
+            }
+        }
     }
     
     func addShadow() {
@@ -58,7 +83,7 @@ class MDButton: UIButton {
             
             let touch = touches.first
             var location = touch?.locationInView(self)
-            if let _ = self as? MDNavButton {
+            if isForNav {
                 location = CGPointMake(self.frame.size.width/2, self.frame.size.height/2)
             }
             
@@ -95,7 +120,9 @@ class MDButton: UIButton {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        isRound = false
+        isForNav = false
+        super.init(coder:aDecoder)
     }
     
 }
